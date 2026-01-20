@@ -14,5 +14,7 @@
 
 <app-transaction-row
   *ngFor="let t of filteredTransactions; trackBy: trackById"
-  [item]="t">
+  [item]="t"
+  (delete)="onDelete($event)"
+  (edit)="onEdit($event)">
 </app-transaction-row>

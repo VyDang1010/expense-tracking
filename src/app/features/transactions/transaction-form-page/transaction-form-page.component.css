@@ -44,9 +44,17 @@ input, select {
   cursor: pointer;
 }
 
+.btn:hover {
+  background-color: #1846c3;
+}
+
 .btn.secondary {
   background: #fff;
   color: #1f2a37;
+}
+
+.btn.secondary:hover {
+  background: #eaeced;
 }
 
 h1 {

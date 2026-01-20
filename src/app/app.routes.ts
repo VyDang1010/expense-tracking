@@ -20,6 +20,13 @@ export const routes: Routes = [
             import('./features/transactions/transactions-page/transactions-page.component')
                 .then(m => m.TransactionsPageComponent),
     },
+    {
+        path: 'transactions/:id/edit',
+        loadComponent: () =>
+            import('./features/transactions/transaction-form-page/transaction-form-page.component')
+            .then(m => m.TransactionFormPageComponent)
+    },
+    
     { path: '', redirectTo: 'dashboard', pathMatch: 'full'}, // Vào trang gốc / thì tự về dashboard 
     {path: '**', redirectTo: 'dashboard' }, // Gõ URL sai về trang gốc
 ];

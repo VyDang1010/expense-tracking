@@ -5,7 +5,16 @@
         <div class="note" *ngIf="item.note">{{ item.note }}</div>
     </div>
 
-    <div class="amount">
-        {{ item.amount | number }}
+    <div class="right">
+        <div class="amount">{{ item.amount | number }}</div>
+
+        <div class="actions">
+            <button class="btn-action btn-edit" type="button" (click)="onEdit()">
+                Edit
+            </button>
+            <button class="btn-action btn-delete" type="button" (click)="onDelete()">
+                Delete
+            </button>
+        </div>
     </div>
 </div>

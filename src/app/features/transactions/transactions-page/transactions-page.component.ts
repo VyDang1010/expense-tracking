@@ -3,7 +3,8 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Transaction } from '../../../core/models/transaction';
 import { TransactionRowComponent } from '../transaction-row/transaction-row.component';
 import { TransactionFilterComponent } from '../transaction-filter/transaction-filter.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router,NavigationEnd  } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 type FilterType = 'all' | 'income' | 'expense';
 
@@ -18,46 +19,59 @@ export class TransactionsPageComponent implements OnInit {
   transactions: Transaction[] = [];
   selectedType: FilterType = 'all';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object, private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.loadFromStorage();
+      });
+  }
 
   ngOnInit(): void {
-    this.loadFromStorage();
+    // this.loadFromStorage();
   }
 
   loadFromStorage(): void {
-    // Chỉ chạy localStorage ở browser
     if (!isPlatformBrowser(this.platformId)) {
-      // SSR/Node: không có localStorage -> chỉ để mock tạm
-      this.transactions = [
-        { id: 't1', date: '2026-01-19', amount: 50000, type: 'expense', category: 'Eat and Drink', note: 'Cafe' },
-        { id: 't2', date: '2026-01-18', amount: 120000, type: 'expense', category: 'Transport', note: 'Grab' },
-        { id: 't3', date: '2026-01-17', amount: 2000000, type: 'income', category: 'Salary', note: 'January' },
-      ];
+      this.transactions = [];
       return;
     }
 
     const raw = localStorage.getItem('transactions');
 
-    if (raw) {
-      try {
-        const parsed = JSON.parse(raw);
-        this.transactions = Array.isArray(parsed) ? (parsed as Transaction[]) : [];
-        return;
-      } catch {
-        // nếu JSON lỗi thì rơi xuống dưới để reset
-      }
+    if (!raw) {
+      this.transactions = [];
+      return;
     }
 
-    // Nếu chưa có hoặc dữ liệu hỏng thì đẩy mock data vào
-    this.transactions = [
-      { id: 't1', date: '2026-01-19', amount: 45000, type: 'expense', category: 'Eat and Drink', note: 'Cafe' },
-      { id: 't2', date: '2026-01-18', amount: 120000, type: 'expense', category: 'Transport', note: 'Grab' },
-      { id: 't3', date: '2026-01-17', amount: 2000000, type: 'income', category: 'Salary', note: 'January' },
-    ];
+    try {
+      const parsed = JSON.parse(raw);
+      this.transactions = Array.isArray(parsed) ? parsed : [];
+    } catch {
+      this.transactions = [];
+    }
+}
 
-    localStorage.setItem('transactions', JSON.stringify(this.transactions));
+
+  // Hàm Delete
+  onDelete(id: string): void {
+    const ok = confirm('Delete this transaction?');
+    if (!ok) return;
+
+    this.transactions = this.transactions.filter(t => t.id !== id);
+
+    // Chỉ lưu khi browser
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('transactions', JSON.stringify(this.transactions));
+    }
   }
 
+  // Hàm Edit sau khi gọi Router ở constructor
+  onEdit(id: string) {
+    this.router.navigate(['/transactions', id, 'edit']);
+  }
+  
+  //Filter của Transaction
   get filteredTransactions(): Transaction[] {
     if (this.selectedType === 'all') return this.transactions;
     return this.transactions.filter(t => t.type === this.selectedType);

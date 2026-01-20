@@ -1,4 +1,4 @@
-<h1>Add transaction</h1>
+<h1>{{ editingId ? 'Edit transaction' : 'Add transaction' }}</h1>
 
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
   <div class="field">
@@ -39,7 +39,9 @@
   </div>
 
   <div class="actions">
-    <button class="btn" type="submit">Add</button>
+    <button class="btn" type="submit">
+      {{ editingId ? 'Update' : 'Add' }}
+    </button>
     <a class="btn secondary" routerLink="/transactions">Cancel</a>
   </div>
 </form>

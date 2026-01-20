@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
+    border-radius: 20px;
 }
 
 .brand {
@@ -45,6 +46,7 @@
 .nav a.active {
   background: #eef2ff;
   font-weight: 700;
+  color: #105cf5;
 
 }
 
@@ -78,7 +80,7 @@
 /* Top bar */
 .topbar {
   height: 64px;
-  background: #ffffff;
+  background: #105cf5;;
   border-bottom: 1px solid #e9edf5;
   display: flex;
   align-items: center;
@@ -89,6 +91,7 @@
 .topbar-title {
   font-weight: 800;
   letter-spacing: 1px;
+  color: #fff;
 }
 
 .topbar-actions {

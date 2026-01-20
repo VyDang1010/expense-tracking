@@ -25,3 +25,46 @@
 .amount {
   font-weight: 700;
 }
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.action {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-action {
+  color: #fff;
+  flex-basis: content;
+  align-items: center;
+  padding: 5px 15px;
+  border-radius: 500px; /* bo tròn đẹp */
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-edit {
+  background-color: #105cf5;
+  margin-right: 10px
+}
+
+.btn-edit:hover {
+  background-color: #1846c3;
+}
+
+.btn-delete {
+  background-color: #f05d5d;
+}
+
+.btn-delete:hover {
+  background-color: #ca4444;
+}
