@@ -1,0 +1,13 @@
+<div class="filter">
+  <label for="type">Type:</label>
+
+  <select
+    id="type"
+    [(ngModel)]="selectedType"
+    (change)="onTypeChange()"
+  >
+    <option value="all">All</option>
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+  </select>
+</div>

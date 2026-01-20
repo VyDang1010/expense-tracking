@@ -1,0 +1,45 @@
+<h1>Add transaction</h1>
+
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="field">
+    <label>Date</label>
+    <input type="date" formControlName="date" />
+    <div class="error" *ngIf="form.get('date')?.touched && form.get('date')?.invalid">
+      Date is required
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Amount</label>
+    <input type="number" formControlName="amount" placeholder="e.g: 200000" />
+    <div class="error" *ngIf="form.get('amount')?.touched && form.get('amount')?.invalid">
+      Amount is required and must be >= 1
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Type</label>
+    <select formControlName="type">
+      <option value="expense">Expense</option>
+      <option value="income">Income</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>Category</label>
+    <input type="text" formControlName="category" placeholder="Eat and Drink, Transport..." />
+    <div class="error" *ngIf="form.get('category')?.touched && form.get('category')?.invalid">
+      Category is required
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Note</label>
+    <input type="text" formControlName="note" placeholder="Can note or not" />
+  </div>
+
+  <div class="actions">
+    <button class="btn" type="submit">Add</button>
+    <a class="btn secondary" routerLink="/transactions">Cancel</a>
+  </div>
+</form>

@@ -1,0 +1,25 @@
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 500;
+    color: #105cf5;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #105cf5;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}

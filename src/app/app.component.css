@@ -1,0 +1,122 @@
+.app {
+    height: 100vh;              /* full màn hình */
+    display: flex;              /* chia ngang sidebar + main */
+    background: #fefefe;        /* nền giống dashboard */
+}
+
+.sidebar {
+    width: 260px;
+    background: #ffffff;
+    border-right: 1px solid #dde5f7;
+    padding: 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.brand {
+    font-size: 20px;
+    color: #105cf5;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    padding: 7px 5px;
+}
+
+/* Nav */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav a {
+    display: flex;          /* để căn chữ đẹp */
+    align-items: center;
+    width: 100%;            /* chiếm hết ngang sidebar */
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #1f2a37;
+    white-space: nowrap;     /* chữ không bị gãy dòng */
+    overflow: hidden;        /* nếu dài quá thì ẩn */
+    text-overflow: ellipsis; /* hiện ... nếu dài */
+}
+
+.nav a.active {
+  background: #eef2ff;
+  font-weight: 700;
+
+}
+
+/* đẩy footer xuống đáy */
+.sidebar-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-footer a {
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #6b7280;
+}
+
+.sidebar-footer a:hover {
+  background: #f3f4f6;
+}
+
+/* Main phải */
+.main {
+  flex: 1;                    /* chiếm phần còn lại => rộng hơn sidebar */
+  display: flex;
+  flex-direction: column;
+  min-width: 0;               /* tránh tràn ngang khi nội dung rộng */
+}
+
+/* Top bar */
+.topbar {
+  height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid #e9edf5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+}
+
+.topbar-title {
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search {
+  width: 260px;
+  max-width: 40vw;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* Vùng nội dung */
+.content {
+  padding: 18px;
+  overflow: auto;             /* nếu page dài thì cuộn phần main */
+}

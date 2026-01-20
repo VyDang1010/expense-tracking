@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>Transactions</h1>
+
+  <a class="btn" routerLink="/transactions/new">
+    + Add transaction
+  </a>
+</div>
+
+<p>Selecting type of transaction to view the list of changes.</p>
+
+<app-transaction-filter (typeChange)="onTypeChange($event)"></app-transaction-filter>
+
+<div *ngIf="filteredTransactions.length === 0">Don't have any suitable transactions.</div>
+
+<app-transaction-row
+  *ngFor="let t of filteredTransactions; trackBy: trackById"
+  [item]="t">
+</app-transaction-row>

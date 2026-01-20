@@ -1,0 +1,17 @@
+.filter {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+}
+
+select {
+  padding: 7px 17px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.type {
+  font-size: px;
+}

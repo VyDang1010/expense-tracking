@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="left">
+        <div class="category">{{ item.category }}</div>
+        <div class="meta">{{ item.date }} • {{ item.type }}</div>
+        <div class="note" *ngIf="item.note">{{ item.note }}</div>
+    </div>
+
+    <div class="amount">
+        {{ item.amount | number }}
+    </div>
+</div>
